@@ -25414,7 +25414,7 @@
 
         /**
          * @class
-         * @private
+         * @public
          * @name MovieClip
          * @memberof PIXI
          * @see PIXI.extras.MovieClip
@@ -25516,7 +25516,7 @@
 
         /**
          * @class
-         * @private
+         * @public
          * @name TextureCache
          * @memberof PIXI
          * @see PIXI.utils.TextureCache
