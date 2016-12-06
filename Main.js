@@ -32,8 +32,8 @@ function init() {
     });
 
     PIXI.loader
-    .add(["images/BG.png","images/bluepotion.png","images/emptypotion.png","images/redpotion.png","images/yellowpotion.png","images/spin.png","images/balance.png",
-    "images/up.png","images/down.png","images/stake.png","images/fill.png"])
+    .add(["images/BG2.png","images/spin.png","images/balance.png","images/up.png","images/down.png","images/stake.png","images/fill.png",
+    "images/red/vanilla.png","images/blue/vanilla.png","images/green/vanilla.png"])
     .on("progress",loadProgressHandler)
     .on("complete", onAssetsLoaded)
     .load();
@@ -42,12 +42,13 @@ function init() {
 
 function onAssetsLoaded() {
 
-    var background = new PIXI.Sprite(PIXI.loader.resources["images/BG.png"].texture);
+    var background = new PIXI.Sprite(PIXI.loader.resources["images/BG2.png"].texture);
     var spinButton = new PIXI.Sprite(PIXI.loader.resources["images/spin.png"].texture);
     var balanceField = new PIXI.Sprite(PIXI.loader.resources["images/balance.png"].texture);
     var downStake = new PIXI.Sprite(PIXI.loader.resources["images/down.png"].texture);
     var upStake = new PIXI.Sprite(PIXI.loader.resources["images/up.png"].texture);
     var stakeField = new PIXI.Sprite(PIXI.loader.resources["images/stake.png"].texture);
+    
     spinButton.scale.set(0.3,0.3);
     spinButton.position.set(800,600);
     spinButton.interactive =true;
@@ -71,6 +72,8 @@ function onAssetsLoaded() {
 
     spinButton
         .on("mousedown",spinTheGame);
+    spinButton
+        .on("tap",spinTheGame);
    downStake
         .on("mousedown",stakeDown);
     upStake
@@ -86,16 +89,15 @@ function refresh() {
 }
 
 function loadProgressHandler(loader, resource) {
-    console.log("loading: " + resource.url);
-    console.log("progress: " + loader.progress + "%");
+ //   console.log("loading: " + resource.url);
+ //   console.log("progress: " + loader.progress + "%");
 }
 
 function spinTheGame() {
     console.log("Arggggg");
     getRNG();
     stakeDeduction();
-    updateReelSet();
-    calculateWinnings();
+    addReelSets();
     refresh();
 }
 
