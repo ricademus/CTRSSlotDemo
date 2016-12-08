@@ -10,7 +10,6 @@
 
 var rng;
 var renderer, stage,stakeAmount,balanceAmount;
-var images = [];
 var rngCall = [];
 var initialStake = 2.00;
 var balance = 20000;
@@ -33,7 +32,8 @@ function init() {
 
     PIXI.loader
     .add(["images/BG2.png","images/spin.png","images/balance.png","images/up.png","images/down.png","images/stake.png","images/fill.png",
-    "images/red/vanilla.png","images/blue/vanilla.png","images/green/vanilla.png","images/red/impdeath.png"])
+    "images/red/vanilla.png","images/blue/vanilla.png","images/green/vanilla.png","images/red/impdeath.png"
+        ,"images/green/impdeath.png","images/blue/impdeath.png"])
     .on("progress",loadProgressHandler)
     .on("complete", onAssetsLoaded)
     .load();
@@ -80,12 +80,12 @@ function onAssetsLoaded() {
 
     stage.addChild(background,spinButton,balanceField,downStake,upStake,stakeField);
     addReelSets();
-    impDeath();
+    impDeath("green");
     refresh();
 }
 
 function refresh() {
-    console.log("ticking");
+ //   console.log("ticking");
     renderer.render(stage);
 }
 
@@ -95,11 +95,11 @@ function loadProgressHandler(loader, resource) {
 }
 
 function spinTheGame() {
-    console.log("Arggggg");
+  //  console.log("Arggggg");
     getRNG();
     stakeDeduction();
     addReelSets();
-    impDeath();
+    calculateWinnings();
     refresh();
 }
 

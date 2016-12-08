@@ -26,24 +26,62 @@ function stakeDeduction() {
 
 function calculateWinnings() {
     var winningsAmount = 0;
+    console.log(winlines.toString());
     for(var i=0; i<winlines.length; i++) {
-        if(rngCall[winlines[i][0]-1]==rngCall[winlines[i][1]-1] && rngCall[winlines[i][1]-1]==rngCall[winlines[i][2]-1]
-            && rngCall[winlines[i][2]-1]==rngCall[winlines[i][3]-1]
-            && rngCall[winlines[i][3]-1]==rngCall[winlines[i][4]-1]) {
-            console.log("Won on the Line" + i.toString());
-            switch (rngCall[winlines[i][0]-1]) {
+        if(visibleSymbols[winlines[i][0]-1]==visibleSymbols[winlines[i][1]-1]
+            && visibleSymbols[winlines[i][1]-1]==visibleSymbols[winlines[i][2]-1]
+            && visibleSymbols[winlines[i][2]-1]==visibleSymbols[winlines[i][3]-1]
+            && visibleSymbols[winlines[i][3]-1]==visibleSymbols[winlines[i][4]-1]) {
+            switch (visibleSymbols[winlines[i][0]]) {
                 case 1:
-                        winningsAmount = initialStake * 2;
+                        winningsAmount = initialStake * 10;
                         balanceUpdate(winningsAmount);
                     break;
                 case 2:
-                    winningsAmount = initialStake * 5;
+                    winningsAmount = initialStake * 20;
                     balanceUpdate(winningsAmount);
                     break;
                 case 3:
-                    winningsAmount = initialStake * 10;
+                    winningsAmount = initialStake * 30;
                     balanceUpdate(winningsAmount);
                     break;
+            }
+        }else{
+            if(visibleSymbols[winlines[i][0]-1]==visibleSymbols[winlines[i][1]-1]
+                && visibleSymbols[winlines[i][1]-1]==visibleSymbols[winlines[i][2]-1]
+                && visibleSymbols[winlines[i][2]-1]==visibleSymbols[winlines[i][3]-1]) {
+                switch (visibleSymbols[winlines[i][0]]) {
+                    case 1:
+                        winningsAmount = initialStake * 5;
+                        balanceUpdate(winningsAmount);
+                        break;
+                    case 2:
+                        winningsAmount = initialStake * 10;
+                        balanceUpdate(winningsAmount);
+                        break;
+                    case 3:
+                        winningsAmount = initialStake * 15;
+                        balanceUpdate(winningsAmount);
+                        break;
+                }
+        }else {
+                if (visibleSymbols[winlines[i][0] - 1] == visibleSymbols[winlines[i][1] - 1]
+                    && visibleSymbols[winlines[i][1] - 1] == visibleSymbols[winlines[i][2] - 1]) {
+                    switch (visibleSymbols[winlines[i][0]]) {
+                        case 1:
+                            winningsAmount = initialStake * 2;
+                            balanceUpdate(winningsAmount);
+                            break;
+                        case 2:
+                            winningsAmount = initialStake * 5;
+                            balanceUpdate(winningsAmount);
+                            break;
+                        case 3:
+                            winningsAmount = initialStake * 8;
+                            balanceUpdate(winningsAmount);
+                            break;
+                    }
+                }
             }
         }
     }

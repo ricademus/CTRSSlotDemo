@@ -2,37 +2,30 @@
  * Created by shieldsy on 01/12/2016.
  */
 var reelSet1 = [1,2,1,2,3,3,2,1,2,2,1,2,3,1,2,3,1,2,1,2];
-var winsymbols = [[],[],[],[],[]];
+var visibleSymbols = [];
 var impDeathArray = [];
 var impDeaths;
 
 
 function addReelSets() {
 		getRNG();
-		console.log(rngCall.toString());
-		console.log(reelSet1.toString());
-		var xloc = 180;
+	//	console.log(rngCall.toString());
+	//	console.log(reelSet1.toString());
+    var xloc = 180;
     var yloc = 150;
-    for(var i=0; i<rngCall.length; i++) {
-    var pic,pic2,pic3;
-    pic = getImageIdLoc(reelSet1[rngCall[i]]);
-    pic2 = getImageIdLoc(reelSet1[rngCall[i]+1]);
-    pic3 = getImageIdLoc(reelSet1[rngCall[i]+2]);
-    
-    pic.x = xloc;
-    pic.y = yloc;
-		pic2.x = xloc;
-    pic2.y = yloc+100;
-		pic3.x = xloc;
-    pic3.y = yloc+200;
-    winsymbols[i][0] = reelSet1[rngCall[i]];
-    winsymbols[i][1] = reelSet1[rngCall[i]+1];
-    winsymbols[i][2] = reelSet1[rngCall[i]+2];
-        xloc = xloc+100;
-        console.log(xloc + " " + yloc);
-        stage.addChild(pic,pic2,pic3);
+    for(var i=0; i<15; i++) {
+        var pic = getImageIdLoc(reelSet1[rngCall[i]]);
+        pic.x = xloc;
+        pic.y = yloc;
+        visibleSymbols[i] = reelSet1[rngCall[i]];
+        stage.addChild(pic);
+        xloc = xloc + 85;
+        if(i == 4 || i == 9) {
+            xloc = 180;
+            yloc = yloc + 85;
+        }
     }
-    console.log(winsymbols.toString());
+    console.log(visibleSymbols.toString());
 }
 
 function getImageIdLoc(iden)
@@ -57,7 +50,7 @@ switch (iden) {
 }
 
 function getRNG() {
-    for(var i=0;i<5;i++) {
+    for(var i=0;i<15;i++) {
         var rngNum = randomNumber();
         rngCall[i] = rngNum;
     }
@@ -69,9 +62,11 @@ function randomNumber()
     return rng;
 }
 
-function createSprites() {
-
-    var base = PIXI.utils.TextureCache["images/red/impdeath.png"];
+function createSprites(colour) {
+    console.log(colour);
+    var loc = "images/"+colour.toString()+"/impdeath.png";
+    console.log(loc);
+    var base = PIXI.utils.TextureCache[loc];
      var texture0 = new PIXI.Texture(base);
      texture0.frame = new PIXI.Rectangle(0, 0, 64, 64);
     var texture1 = new PIXI.Texture(base);
@@ -89,23 +84,21 @@ function createSprites() {
     impDeathArray = [texture0, texture1, texture2, texture3, texture4, texture5, texture6];
 }
 
-function impDeath() {
-    createSprites();
-
+function impDeath(whichImp) {
+    console.log(whichImp);
+    createSprites(whichImp);
     impDeaths = new PIXI.extras.AnimatedSprite(impDeathArray);
     impDeaths.animationSpeed = 0.1;
     impDeaths.scale.set(1.5,1.5);
     impDeaths.x = 10;
     impDeaths.y = 100;
+    impDeaths.loop = false;
     impDeaths.play();
     stage.addChild(impDeaths);
-    console.log("Hmmmmmmmmm " + impDeathArray.length);
     animate();
 }
 
 function animate() {
-    console.log("hmm");
-    console.log(impDeaths.playing);
     refresh();
     requestAnimationFrame(animate);
 }
