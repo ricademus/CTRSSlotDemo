@@ -3,6 +3,8 @@
  */
 var reelSet1 = [1,2,1,2,3,3,2,1,2,2,1,2,3,1,2,3,1,2,1,2];
 var winsymbols = [[],[],[],[],[]];
+var impDeathArray = [];
+    var impDeaths;
 
 
 function addReelSets() {
@@ -38,13 +40,13 @@ function getImageIdLoc(iden)
 var pic,tex;
 switch (iden) {
             case 1:
-                tex = PIXI.TextureCache["images/red/vanilla.png"];
+                tex = PIXI.utils.TextureCache["images/red/vanilla.png"];
                 break;
             case 2:
-            	  tex = PIXI.TextureCache["images/blue/vanilla.png"];
+            	  tex = PIXI.utils.TextureCache["images/blue/vanilla.png"];
                 break;
             case 3:
-            		tex = PIXI.TextureCache["images/green/vanilla.png"];
+            		tex = PIXI.utils.TextureCache["images/green/vanilla.png"];
                 break;
         }   
         var red = new PIXI.Rectangle(0,128,64,64);
@@ -65,4 +67,30 @@ function randomNumber()
 {
     rng = Math.floor(Math.random()*17+1);
     return rng;
+}
+
+function impDeath() {
+    var y=0;
+    for(var i=0;i<7;i++) {
+        var tex = PIXI.utils.TextureCache["images/red/impdeath.png"];
+        var red = new PIXI.Rectangle(y,0,64,64);
+        tex.frame = red;
+        impDeathArray[i] = tex;
+        console.log(y);
+        y = y + 64;
+    }
+    impDeaths = new PIXI.extras.AnimatedSprite(impDeathArray);
+    impDeaths.animationSpeed = 0.0001;
+    impDeaths.scale.set(1.5,1.5);
+    impDeaths.x = 10;
+    impDeaths.y = 100;
+    impDeaths.play();
+    impDeaths.loop = true;
+    stage.addChild(impDeaths);
+    animate();
+}
+
+function animate() {
+    refresh();
+    requestAnimationFrame(animate);
 }

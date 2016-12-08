@@ -33,7 +33,7 @@ function init() {
 
     PIXI.loader
     .add(["images/BG2.png","images/spin.png","images/balance.png","images/up.png","images/down.png","images/stake.png","images/fill.png",
-    "images/red/vanilla.png","images/blue/vanilla.png","images/green/vanilla.png"])
+    "images/red/vanilla.png","images/blue/vanilla.png","images/green/vanilla.png","images/red/impdeath.png"])
     .on("progress",loadProgressHandler)
     .on("complete", onAssetsLoaded)
     .load();
@@ -81,6 +81,7 @@ function onAssetsLoaded() {
 
     stage.addChild(background,spinButton,balanceField,downStake,upStake,stakeField);
     addReelSets();
+    impDeath();
     refresh();
 }
 
