@@ -73,19 +73,19 @@ function createSprites() {
 
     var base = PIXI.utils.TextureCache["images/red/impdeath.png"];
      var texture0 = new PIXI.Texture(base);
-     texture0.setFrame(new PIXI.Rectangle(0, 0, 64, 64));
+     texture0.frame = new PIXI.Rectangle(0, 0, 64, 64);
     var texture1 = new PIXI.Texture(base);
-    texture1.setFrame(new PIXI.Rectangle(64, 0, 64, 64));
+    texture1.frame = new PIXI.Rectangle(64, 0, 64, 64);
     var texture2 = new PIXI.Texture(base);
-    texture2.setFrame(new PIXI.Rectangle(128, 0, 64, 64));
+    texture2.frame = new PIXI.Rectangle(128, 0, 64, 64);
     var texture3 = new PIXI.Texture(base);
-    texture3.setFrame(new PIXI.Rectangle(196, 0, 64, 64));
+    texture3.frame = new PIXI.Rectangle(196, 0, 64, 64);
     var texture4 = new PIXI.Texture(base);
-    texture4.setFrame(new PIXI.Rectangle(260, 0, 64, 64));
+    texture4.frame = new PIXI.Rectangle(260, 0, 64, 64);
     var texture5 = new PIXI.Texture(base);
-    texture5.setFrame(new PIXI.Rectangle(324, 0, 64, 64));
+    texture5.frame = new PIXI.Rectangle(324, 0, 64, 64);
     var texture6 = new PIXI.Texture(base);
-    texture6.setFrame(new PIXI.Rectangle(328, 0, 64, 64));
+    texture6.frame = new PIXI.Rectangle(328, 0, 64, 64);
     impDeathArray = [texture0, texture1, texture2, texture3, texture4, texture5, texture6];
 }
 
