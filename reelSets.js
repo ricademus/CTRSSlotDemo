@@ -4,7 +4,7 @@
 var reelSet1 = [1,2,1,2,3,3,2,1,2,2,1,2,3,1,2,3,1,2,1,2];
 var winsymbols = [[],[],[],[],[]];
 var impDeathArray = [];
-    var impDeaths;
+var impDeaths;
 
 
 function addReelSets() {
@@ -69,28 +69,43 @@ function randomNumber()
     return rng;
 }
 
+function createSprites() {
+
+    var base = PIXI.utils.TextureCache["images/red/impdeath.png"];
+     var texture0 = new PIXI.Texture(base);
+     texture0.setFrame(new PIXI.Rectangle(0, 0, 64, 64));
+    var texture1 = new PIXI.Texture(base);
+    texture1.setFrame(new PIXI.Rectangle(64, 0, 64, 64));
+    var texture2 = new PIXI.Texture(base);
+    texture2.setFrame(new PIXI.Rectangle(128, 0, 64, 64));
+    var texture3 = new PIXI.Texture(base);
+    texture3.setFrame(new PIXI.Rectangle(196, 0, 64, 64));
+    var texture4 = new PIXI.Texture(base);
+    texture4.setFrame(new PIXI.Rectangle(260, 0, 64, 64));
+    var texture5 = new PIXI.Texture(base);
+    texture5.setFrame(new PIXI.Rectangle(324, 0, 64, 64));
+    var texture6 = new PIXI.Texture(base);
+    texture6.setFrame(new PIXI.Rectangle(328, 0, 64, 64));
+    impDeathArray = [texture0, texture1, texture2, texture3, texture4, texture5, texture6];
+}
+
 function impDeath() {
-    var y=0;
-    for(var i=0;i<7;i++) {
-        var tex = PIXI.utils.TextureCache["images/red/impdeath.png"];
-        var red = new PIXI.Rectangle(y,0,64,64);
-        tex.frame = red;
-        impDeathArray[i] = tex;
-        console.log(y);
-        y = y + 64;
-    }
+    createSprites();
+
     impDeaths = new PIXI.extras.AnimatedSprite(impDeathArray);
-    impDeaths.animationSpeed = 0.0001;
+    impDeaths.animationSpeed = 0.1;
     impDeaths.scale.set(1.5,1.5);
     impDeaths.x = 10;
     impDeaths.y = 100;
     impDeaths.play();
-    impDeaths.loop = true;
     stage.addChild(impDeaths);
+    console.log("Hmmmmmmmmm " + impDeathArray.length);
     animate();
 }
 
 function animate() {
+    console.log("hmm");
+    console.log(impDeaths.playing);
     refresh();
     requestAnimationFrame(animate);
 }

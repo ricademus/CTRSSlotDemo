@@ -37,7 +37,6 @@ function init() {
     .on("progress",loadProgressHandler)
     .on("complete", onAssetsLoaded)
     .load();
-
 }
 
 function onAssetsLoaded() {
@@ -86,6 +85,7 @@ function onAssetsLoaded() {
 }
 
 function refresh() {
+    console.log("ticking");
     renderer.render(stage);
 }
 
@@ -99,6 +99,7 @@ function spinTheGame() {
     getRNG();
     stakeDeduction();
     addReelSets();
+    impDeath();
     refresh();
 }
 
